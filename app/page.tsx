@@ -18,7 +18,7 @@ export default function HomePage() {
                 <div className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
                   <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
                     <img
-                      src="/ai-engineer-headshot.png"
+                      src="/saikrishnan-iyer-headshot.jpg"
                       alt="Saikrishnan Srinivas Iyer"
                       className="w-28 h-28 rounded-full object-cover"
                     />
