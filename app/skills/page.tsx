@@ -251,7 +251,7 @@ export default function SkillsPage() {
                   className={`${
                     selectedRole === role
                       ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0"
-                      : "border-slate-600 text-slate-300 hover:bg-slate-800"
+                      : ""
                   }`}
                 >
                   {role}
