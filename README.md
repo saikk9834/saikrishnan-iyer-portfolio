@@ -1,30 +1,60 @@
-# Modern AI Portfolio
+🧠 AI Portfolio Website – Sai Krishnan
+A modern, interactive portfolio website for an AI Software Engineer, built with Next.js, Vercel, and Tailwind CSS, featuring cutting-edge AI-powered experiences that showcase my skills, work, and personality.
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+🚀 Features
+🔹 AI Chatbot
+An intelligent chatbot that answers questions about my projects, skills, career journey, and AI expertise—powered by real-time LLM integration.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/saikk9834s-projects/v0-modern-ai-portfolio)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/dZyXLWx7eP0)
+🔹 AI Skill Visualizer
+A dynamic, data-driven visualization of my AI and software engineering skills, showing proficiency, project impact, and tech stack familiarity.
 
-## Overview
+🔹 Role-Based Resume Switcher
+Switch between different resume versions (AI Engineer, Data Analyst, Backend Developer) based on the role—instantly AI-tailored for the visitor.
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+🔹 Smooth, Modern UI
+Clean and professional design with fluid animations, responsive layouts, and interactive elements.
 
-## Deployment
+🛠️ Tech Stack
+Frontend: Next.js, React, Tailwind CSS, Framer Motion
 
-Your project is live at:
+Hosting & Deployment: Vercel
 
-**[https://vercel.com/saikk9834s-projects/v0-modern-ai-portfolio](https://vercel.com/saikk9834s-projects/v0-modern-ai-portfolio)**
+AI Integration: OpenAI API / LangChain (for chatbot + AI features)
 
-## Build your app
+Data Visualization: D3.js / Chart.js
 
-Continue building your app on:
+State Management: Zustand / Redux
 
-**[https://v0.app/chat/projects/dZyXLWx7eP0](https://v0.app/chat/projects/dZyXLWx7eP0)**
+📦 Installation
+bash
+Copy
+Edit
+# Clone the repository
+git clone https://github.com/your-username/ai-portfolio.git
 
-## How It Works
+# Navigate into the project folder
+cd ai-portfolio
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+Visit http://localhost:3000 to view the site locally.
+
+
+🔮 Future Enhancements
+🗣️ Voice-enabled chatbot
+
+🧑‍💻 Live coding challenges
+
+📈 AI career growth recommendations
+
+🌎 Multilingual portfolio AI translations
+
+📬 Contact
+📧 Email: your@email.com
+🌐 Portfolio: your-domain.com
+💼 LinkedIn: linkedin.com/in/your-profile
+
+If you like this project, ⭐ star the repo and let's connect! 🚀
