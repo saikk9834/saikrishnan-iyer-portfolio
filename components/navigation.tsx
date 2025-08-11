@@ -50,7 +50,6 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
-                  download= {item.href.endsWith(".pdf") ? "resume.pdf" : undefined}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{item.label}</span>
