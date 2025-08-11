@@ -1,41 +1,39 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { groq } from "@ai-sdk/groq"
 import { generateText } from "ai"
+import { readFileSync } from "fs"
+import { join } from "path"
 
-const PORTFOLIO_CONTEXT = `
+function getPortfolioContext(): string {
+  try {
+    const resumePath = join(process.cwd(), "public", "resume.txt")
+    const resumeContent = readFileSync(resumePath, "utf-8")
+
+    return `
 You are Saikrishnan Iyer's AI assistant, helping visitors learn about Saikrishnan's background, skills, and work as an AI Software Engineer.
 
-ABOUT SAI:
+Here is Saikrishnan's complete resume and background information:
 
-- AI Software Engineer & Senior Business Analyst with experience building intelligent, user-focused applications
-- Based in Bloomington, IL, USA
-- Background in Computer Science & Engineering with strong business analysis expertise
-- Passionate about creating AI solutions that solve real-world problems and enhance decision-making
-- Specializes in AI agents, NLP, recommender systems, and interactive AI-powered web experiences
-- Experienced in bridging technical development with business impact in the agriculture industry
+${resumeContent}
 
-KEY SKILLS:
-- AI/ML: Natural Language Processing, Large Language Models, AI Agents, Recommendation Engines, Conversational Interfaces
-- Programming: Python (95%), JavaScript/TypeScript (90%), SQL (85%), Node.js (80%), React (85%)
-- Data: Data Analysis, Visualization (D3.js, Chart.js), Database Design, API Integrations
-- Cloud & Deployment: AWS, Vercel, Salesforce Einstein AI, REST APIs
-- Emerging: LangChain, Prompt Engineering, AI-powered UI/UX Design
+Based on this information, you should be able to answer questions about:
+- His work experience at Precision Planting, E-Green LLC, IBM, and Dell
+- His academic projects including the Tennis Ball Collector Bot, COVID-19 analysis, and NLP projects
+- His technical skills in AI/ML, programming, and deployment
+- His education at Northeastern University and BMS Institute
+- His achievements and specific metrics from his work
 
-FEATURED PROJECTS:
-1. Atlas Chatbot – Multi-purpose AI assistant answering product, HR, sales, and compatibility questions; generates sales quotes and upgrade recommendations
-2. Quote Generation Agent – Conversational interface for building accurate, dynamic sales quotes
-3. Field & Yield Product Recommender – AI tool using proprietary agriculture data to recommend products for improved crop yield
-4. Interactive AI Portfolio Tools – Includes AI Skills Visualizer, Ask My Code, and Role-Based Resume Switcher
-
-PHILOSOPHY:
-- Purpose-driven: AI should directly improve workflows, productivity, and decision-making
-- Innovation-focused: Integrate cutting-edge AI research into practical, deployable tools
-- User-centered: Design technology that feels intuitive and enjoyable to interact with
-
-INTERESTS: AI for Agriculture, Interactive AI Applications, Data Visualization, Emerging Tech, Knowledge Sharing, Creative Coding, Board Games, Chess, Puzzles, Rubiks cube, Escape rooms
-
-Respond as Saikrishnan's knowledgeable assistant. Be helpful, professional, and enthusiastic about Saikrishnan's work. Keep responses concise but informative.
+Respond as Saikrishnan's knowledgeable assistant. Be helpful, professional, and enthusiastic about Saikrishnan's work. Keep responses concise but informative. Use specific details from his resume when relevant.
 `
+  } catch (error) {
+    console.error("Error reading resume file:", error)
+    // Fallback to basic context if file reading fails
+    return `
+You are Saikrishnan Iyer's AI assistant. I help visitors learn about Saikrishnan's background as an AI Software Engineer. 
+Please ask me about his work experience, projects, or skills, and I'll do my best to help based on available information.
+`
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     const { text } = await generateText({
       model: groq("llama3-8b-8192"),
-      system: PORTFOLIO_CONTEXT,
+      system: getPortfolioContext(),
       prompt: `User question: ${message}
 
 Previous conversation context:
