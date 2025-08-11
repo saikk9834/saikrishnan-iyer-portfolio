@@ -18,9 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Alex Chen - AI Software Engineer",
+  title: "Saikrishnan Iyer - AI Software Engineer",
   description:
-    "Portfolio of Alex Chen, AI Software Engineer specializing in machine learning, full-stack development, and innovative AI solutions.",
+    "Portfolio of Saikrishnan Iyer, AI Software Engineer specializing in machine learning, full-stack development, and innovative AI solutions.",
   generator: "v0.dev",
 }
 
