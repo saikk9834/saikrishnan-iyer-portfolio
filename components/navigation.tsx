@@ -10,8 +10,7 @@ const navItems = [
   { href: "/about", label: "About", icon: User },
   { href: "/projects", label: "Projects", icon: Briefcase },
   { href: "/skills", label: "Skills", icon: Code },
-  { href: "/chat", label: "AI Chat", icon: MessageSquare },
-  { href: "/resume", label: "Resume", icon: FileText },
+  { href: "/resume.pdf", label: "Resume", icon: FileText },
 ]
 
 export default function Navigation() {
@@ -51,6 +50,7 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
+                  download= {item.href.endsWith(".pdf") ? "resume.pdf" : undefined}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{item.label}</span>
