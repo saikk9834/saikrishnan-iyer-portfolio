@@ -1,13 +1,12 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { groq } from "@ai-sdk/groq"
-import { generateText } from "ai"
-import { readFileSync } from "fs"
-import { join } from "path"
+import {type NextRequest, NextResponse} from "next/server"
+import {groq} from "@ai-sdk/groq"
+import {generateText} from "ai"
+import {readFileSync} from "fs"
+import {join} from "path"
 
 function getPortfolioContext(): string {
   try {
-    const resumePath = join(process.cwd(), "public", "resume.txt")
-    const resumeContent = readFileSync(resumePath, "utf-8")
+    const resumeContent = readFileSync(join(process.cwd(), "public", "resume.txt"), "utf-8")
 
     return `
 You are Saikrishnan Iyer's AI assistant, helping visitors learn about Saikrishnan's background, skills, and work as an AI Software Engineer.
