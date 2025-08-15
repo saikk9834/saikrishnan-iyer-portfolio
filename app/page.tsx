@@ -93,22 +93,18 @@ export default function HomePage() {
       {/* Quick Stats */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="float-animation">
               <div className="text-4xl font-bold gradient-text mb-2">4+</div>
               <div className="text-slate-300">Years Experience</div>
             </div>
             <div className="float-animation" style={{ animationDelay: "1s" }}>
-              <div className="text-4xl font-bold gradient-text mb-2">60%</div>
-              <div className="text-slate-300">Processing Time Reduced</div>
+              <div className="text-4xl font-bold gradient-text mb-2">Full stack expertise</div>
+              <div className="text-slate-300">Python, TypeScript, React, AWS</div>
             </div>
             <div className="float-animation" style={{ animationDelay: "2s" }}>
-              <div className="text-4xl font-bold gradient-text mb-2">95%</div>
-              <div className="text-slate-300">Detection Accuracy</div>
-            </div>
-            <div className="float-animation" style={{ animationDelay: "3s" }}>
-              <div className="text-4xl font-bold gradient-text mb-2">3 sec</div>
-              <div className="text-slate-300">Review Time (from 3 hours)</div>
+              <div className="text-4xl font-bold gradient-text mb-2">MS in AI</div>
+              <div className="text-slate-300">Northeastern University, Boston</div>
             </div>
           </div>
         </div>

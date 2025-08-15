@@ -161,7 +161,7 @@ export default function ProjectsPage() {
                       <span className="text-sm">{project.period}</span>
                     </div>
                   </div>
-                  {"company" in project && <p className="text-slate-400 text-sm">{project.company}</p>}
+                  { project?.company && <p className="text-slate-400 text-sm">{project.company}</p>}
                 </CardHeader>
                 <CardContent>
                   <p className="text-slate-300 mb-4">{project.description}</p>
