@@ -61,11 +61,11 @@ export default function FloatingChatbot() {
         }),
       })
 
-      if (!response.ok) {
-        throw new Error("Failed to get response")
-      }
+      const data = await response.json().catch(() => ({}))
 
-      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.error || `Request failed with status ${response.status}`)
+      }
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -79,7 +79,10 @@ export default function FloatingChatbot() {
       console.error("Chat error:", error)
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "I'm sorry, I'm having trouble responding right now. Please try again later.",
+        content:
+          error instanceof Error && error.message
+            ? error.message
+            : "I'm sorry, I'm having trouble responding right now. Please try again later.",
         role: "assistant",
         timestamp: new Date(),
       }
