@@ -1,58 +1,38 @@
 Saikrishnan Srinivas Iyer
-Bloomington, IL | 857-316-7933
-saikrishnaniyerjm@gmail.com | linkedin.com/in/saikk9834 | github.com/saikk9834
-
+857-316-7933
+saikrishnaniyerjm@gmail.com | linkedin.com/in/saikk9834 | github.com/saikk9834 | saikrishnaniyer.com
+PROFESSIONAL SUMMARY
+Full-stack Software Engineer with 4+ years shipping production applications end-to-end - backend services, REST APIs, and polished React/TypeScript UIs - along with the AI systems behind them. Shipped a production RAG chatbot on AWS Bedrock in TypeScript/Node.js/React and NLP services in Python, and built developer tooling teams rely on daily. Strong across the stack: relational and vector databases, AWS (Lambda, ECS, S3, Bedrock), Docker, and CI/CD, with a focus on performance and measurable product impact. Treats AI fluency as a real multiplier: authored agent instruction files for Claude Code, Cursor, and Copilot that lifted team velocity and code quality.
 WORK EXPERIENCE
-
 Precision Planting | Bloomington, IL
-AI Software Engineer                                                    Oct 2023 – Present
-• Engineered a scalable RAG Chatbot by leveraging AWS Bedrock with full-stack development in TypeScript, React, and Node.js, enabling efficient handling of complex support, HR, and sales inquiries
-• Integrated the chatbot with the company's quote system, automating customized quote generation—reducing manual processing time by 60% and increasing response speed by 45%
-• Collaborated with cross-functional teams to gather requirements and fine-tune the system, ensuring a robust, scalable solution that aligned with enterprise objectives and enhanced overall user experience
-
+AI Software Engineer						 		    		              Oct 2023 – Present
+•	Owned full-stack development end-to-end - from backend logic to polished UI - shipping a production RAG chatbot in TypeScript/React/Node.js on AWS Bedrock that automated quote generation, cutting manual processing by 60% and improving response speed by 45%.
+•	Designed scalable, maintainable architectures for full-stack TypeScript apps integrating AWS, Salesforce, Databricks, and Slack, with clean code boundaries and REST APIs backing the UI; used AI coding agents (Claude Code, Cursor, Copilot) with custom agent instruction files to speed delivery and cut review cycles.
+•	Designed and shipped an LLM-powered chatbot for natural-language querying and summarization of product-assessment videos, owned end-to-end from design through production and model fine-tuning to improve robustness.
+•	Raised code quality across the team through code reviews, reusable patterns, prompt libraries, and evaluation scripts that standardized how features get built, tested, and reviewed.
 E-Green LLC | Boston, MA
-Machine Learning Intern                                                 May 2022 – Dec 2022
-• Spearheaded development of "Automated Hand Steerable Light UV Sterilization" by designing and implementing hand gesture recognition algorithms on a Raspberry Pi board, enabling intuitive lighting control and streamlined sterilization processes
-• Upgraded the platform to Nvidia Jetson Nano, enhancing real-time processing capabilities and system reliability by 50%
-• Led a machine learning-driven image generation project to produce high-quality color shadow images with realistic reproduction that closely mirrored E-Prism's product outputs, advancing visual data accuracy and development efforts
-
+Machine Learning Intern					 		    		         May 2022 – Dec 2022
+•	Built and trained machine learning models in Python for computer-vision tasks (hand gesture recognition on Raspberry Pi and high-fidelity image generation), delivering models from data through deployment on embedded hardware.
+•	Validated generated image outputs against reference E-Prism product samples to measure fidelity and guide iterative model tuning, applying evaluation-driven development to improve output reliability.
 IBM | Bangalore, India
-Software Developer                                                      Jan 2020 - Aug 2021
-• Designed GitHub bot using advanced Natural Language Processing methods, including named entity recognition, to automate the review process for pull requests, resulting in a reduction of review time from 3 hours to just 5 seconds
-• Enhanced efficiency of the development team by implementing the bot, expediting the process and identified potential issues and bugs providing valuable insights, improving overall quality and reliability of the software development workflow
-• Created a dashboard for the team with help of NodeJS and EJS to display a record of different types of orders; fetching information instantly from the server and producing in a visually appealing fashion; saving overall time by 50%
-
+Software Developer 									               	           Jan 2020 - Aug 2021
+•	Engineered a GitHub bot using NLP and named entity recognition to automate pull-request review, reducing review time from 3 hours to 5 seconds and streamlining engineering workflow.
+•	Built an internal Node.js/EJS dashboard that consumed backend APIs to surface real-time order data for the team, streamlining operational visibility and cutting manual reporting time by 50%
 Dell INC. | Bangalore, India
-NLP Intern                                                              July 2019 - Dec 2019
-• Built an NLP-based Google Chrome App to successfully analyze support ticket data, identify key issues, and provide relevant solutions on ServiceNow to streamline the support ticket resolution process, resulting in improved efficiency
-• Implemented NLP techniques (word embedding, topic modeling, tokenization and intent recognition) to extract meaningful information from the support ticket text, reducing average resolution time by 40%
-
+NLP Intern 									       		         July 2019 - Dec 2019
+•	Built an NLP-based application in Python (word embedding, topic modeling, intent recognition) that analyzed support tickets, extracted key issues, and recommended relevant solutions, reducing average resolution time by 40%.
 ACADEMIC PROJECTS
-
-Exploring the Impact of COVID-19 on Annual Personal Income in the United States    Jan 2023 - May 2023
-• Provided valuable insights into the impact of the pandemic on personal income by demonstrating the power of machine learning by analyzing complex datasets and drawing meaningful insights using a range of methods and classifiers
-• Used range of classifiers such as Naïve Bayes, Decision Tree, Support Vector Machines, k-Nearest Neighbors to predict impact of COVID-19 on personal income based on factors such as age, education, and occupation, achieving 85% accuracy
-• Performed feature engineering by selecting and transforming variables that were most relevant for the analysis to improve the accuracy of the models and capturing complex relationships between the different variables
-
-Tennis Ball Collector Bot: A Computer Vision Enabled Solution for Efficient Tennis Court Maintenance    Jan 2022 – May 2022
-• Developed computer vision algorithms for object recognition and tracking, reaching 95% detection accuracy for tennis balls across 3 surfaces and 3 different lighting conditions
-• Designed and optimized a robotic arm and gripper system incorporating precision force sensors and adaptive motion control algorithms to collect tennis balls weighing 2 to 5 ounces, reducing damage incidents by 70%
-• Conducted thorough testing and validation, demonstrating a 98% collection success rate on a standard tennis court
-
-Foreign Text Translation, Summarization and Classification                Sept 2021 - Dec 2021
-• Trained a robust translation model to convert Hindi news articles to English, attaining a 90% BLEU score
-• Built a summarization model to summarize each translated news article into a few sentences and a supervised classification model to classify every translated article into one of 5 categories with 85% accuracy
-• Deployed NLP models, including LSTM, LDA, and BERT, for translation, unsupervised classification, and summarization tasks, achieving 90% accuracy in translation models by leveraging LSA and LexRankSummarizer for summary generation
-
+Exploring the Impact of COVID-19 on Annual Personal Income in the United States	Jan 2023 - May 2023
+•	Developed and compared machine learning models in Python (Naive Bayes, Decision Trees, SVM, k-NN) to predict COVID-19's impact on personal income across noisy pandemic data, achieving an 85% accuracy rate.
+Foreign Text Translation, Summarization and Classification					          Sept 2021 - Dec 2021
+•	Fine-tuned GPT-2 and BERT in Python (PyTorch, Hugging Face) for Hindi-to-English translation, summarization, and intent classification, achieving a 90% BLEU score, 85% classification accuracy, and a 20% improvement in ROUGE scores.
+•	Established a metrics-based evaluation loop (BLEU, ROUGE) to catch regressions and guide fine-tuning, reducing inference errors by 15% and improving reliability on domain-specific corpora.
 SKILLS
-AI/ML & Deep Learning: TensorFlow, PyTorch, scikit-learn, XGBoost, Recommender Systems, Langchain, A/B Testing
-Programming & Data Analysis: Python, Pandas, NumPy, SQL, Spark, Feature Engineering, Data Preprocessing, Node.js, TypeScript
-ML Engineering & Deployment: Git, AI Solution Deployment, Collaborative Development, AWS (Bedrock, Lambda, S3, ECS)
-Concepts & Techniques: Supervised/Unsupervised Learning, Natural Language Processing, Deep Learning, Model Optimization
-
+AI & LLM: AI-First Development, LLM APIs (OpenAI, Anthropic, AWS Bedrock), RAG Pipelines, Vector Search (Pinecone, FAISS), Prompt Engineering, Model Evaluation, LangChain, Hugging Face, PyTorch, NLP, AI Coding Tools (Claude Code, Cursor, Copilot)
+Frontend & Backend: React, TypeScript, JavaScript, Python, Node.js, HTML, CSS, REST APIs, High-Performance UIs, Responsive Design
+Data, Architecture & DevOps: PostgreSQL, MySQL, MongoDB, SQL, Databricks, Scalable Architecture, Code Review, Git, CI/CD (GitHub Actions), Docker, Testing, Performance Optimization, AWS (Lambda, ECS, S3, Bedrock)
 EDUCATION
-Northeastern University, Khoury College of Computer Science, Boston, MA    Aug 2021 - May 2023
+Northeastern University, Khoury College of Computer Science, Boston, MA	Aug 2021 - May 2023
 Masters of Science (MS) in Artificial Intelligence
-
-BMS Institute of Technology and Management, Bangalore, India    Sept 2016 - Sept 2020
-Bachelor of Engineering(BE) in Computer Science and Engineering
+BMS Institute of Technology and Management, Bangalore, India	Sept 2016 - Sept 2020
+Bachelor of Engineering (BE) in Computer Science and Engineering
