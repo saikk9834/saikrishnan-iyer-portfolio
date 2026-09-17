@@ -22,7 +22,7 @@ export default function FloatingChatbot() {
     {
       id: "1",
       content:
-        "Hi! I'm Sai's AI assistant. I can answer questions about his work, skills, projects, and background. What would you like to know?",
+        "Ask me about Sai's work, projects, or background.",
       role: "assistant",
       timestamp: new Date(),
     },
@@ -82,7 +82,7 @@ export default function FloatingChatbot() {
         content:
           error instanceof Error && error.message
             ? error.message
-            : "I'm sorry, I'm having trouble responding right now. Please try again later.",
+            : "Something went wrong reaching the assistant. Try again in a moment.",
         role: "assistant",
         timestamp: new Date(),
       }
@@ -104,23 +104,23 @@ export default function FloatingChatbot() {
       {/* Chat Toggle Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg transition-all duration-300 ${
-          isOpen ? "rotate-180" : "hover:scale-110"
-        }`}
+        aria-label={isOpen ? "Close assistant" : "Ask the assistant"}
+        aria-expanded={isOpen}
+        className="fixed right-6 bottom-6 z-50 size-13 rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? <X className="size-5" /> : <MessageCircle className="size-5" />}
       </Button>
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-6 z-40 w-96 max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-8rem)] bg-slate-900/95 border-slate-700 backdrop-blur-md shadow-2xl">
-          <CardHeader className="pb-3 flex-shrink-0">
-            <CardTitle className="flex items-center space-x-2">
-              <Bot className="w-5 h-5 text-blue-400" />
-              <span className="gradient-text">AI Assistant</span>
+        <Card className="fixed right-6 bottom-24 z-40 h-[500px] max-h-[calc(100dvh-8rem)] w-96 max-w-[calc(100vw-3rem)] gap-0 border-border bg-popover py-0 shadow-lg">
+          <CardHeader className="shrink-0 border-b border-border px-4 py-3.5">
+            <CardTitle className="flex items-center gap-2.5">
+              <Bot className="size-4 text-brand" strokeWidth={1.6} aria-hidden />
+              <span className="label-mono text-[10px] text-muted-foreground">Ask about my work</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-0 flex flex-col h-[420px]">
+          <CardContent className="flex min-h-0 flex-1 flex-col p-0">
             {/* Messages */}
             <div className="flex-1 overflow-hidden">
               <ScrollArea className="h-full px-4">
@@ -133,21 +133,19 @@ export default function FloatingChatbot() {
                       }`}
                     >
                       <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          message.role === "user" ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-slate-700"
+                        className={`flex size-7 shrink-0 items-center justify-center rounded-md ${
+                          message.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted text-brand"
                         }`}
                       >
                         {message.role === "user" ? (
-                          <User className="w-4 h-4 text-white" />
+                          <User className="size-3.5" strokeWidth={1.6} aria-hidden />
                         ) : (
-                          <Bot className="w-4 h-4 text-blue-400" />
+                          <Bot className="size-3.5" strokeWidth={1.6} aria-hidden />
                         )}
                       </div>
                       <div
-                        className={`max-w-[240px] p-3 rounded-lg break-words ${
-                          message.role === "user"
-                            ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                            : "bg-slate-800 text-slate-200"
+                        className={`max-w-[240px] rounded-md p-3 break-words ${
+                          message.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"
                         }`}
                       >
                         <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
@@ -156,18 +154,18 @@ export default function FloatingChatbot() {
                   ))}
                   {isLoading && (
                     <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-4 h-4 text-blue-400" />
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-muted text-brand">
+                        <Bot className="size-3.5" strokeWidth={1.6} aria-hidden />
                       </div>
-                      <div className="bg-slate-800 p-3 rounded-lg">
+                      <div className="rounded-md bg-muted p-3">
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                          <div className="size-1.5 animate-bounce rounded-full bg-muted-foreground"></div>
                           <div
-                            className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"
+                            className="size-1.5 animate-bounce rounded-full bg-muted-foreground"
                             style={{ animationDelay: "0.1s" }}
                           ></div>
                           <div
-                            className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"
+                            className="size-1.5 animate-bounce rounded-full bg-muted-foreground"
                             style={{ animationDelay: "0.2s" }}
                           ></div>
                         </div>
@@ -180,23 +178,24 @@ export default function FloatingChatbot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-slate-700 flex-shrink-0">
+            <div className="shrink-0 border-t border-border p-4">
               <div className="flex space-x-2">
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask about Sai's work, skills, or projects..."
-                  className="bg-slate-800 border-slate-600 text-white placeholder-slate-400"
+                  className="h-11 border-input bg-background"
                   disabled={isLoading}
                 />
                 <Button
                   onClick={handleSendMessage}
                   disabled={!input.trim() || isLoading}
                   size="sm"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                  aria-label="Send message"
+                  className="h-11 w-11 bg-primary text-primary-foreground hover:bg-primary/90"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="size-4" strokeWidth={1.6} aria-hidden />
                 </Button>
               </div>
             </div>

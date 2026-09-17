@@ -1,98 +1,130 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Home, User, Briefcase, MessageSquare, Code, FileText } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
+import { Menu, X, Home, User, Briefcase, Code, FileText, Sun, Moon } from "lucide-react"
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/projects", label: "Work", icon: Briefcase },
   { href: "/about", label: "About", icon: User },
-  { href: "/projects", label: "Projects", icon: Briefcase },
   { href: "/skills", label: "Skills", icon: Code },
-  { href: "/resume.pdf", label: "Resume", icon: FileText },
+  { href: "/resume.pdf", label: "Résumé", icon: FileText },
 ]
+
+function ThemeToggle({ className = "" }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // The server doesn't know the visitor's theme, so nothing that reads it (icon
+  // or label) can render until after hydration or React reports a mismatch.
+  useEffect(() => setMounted(true), [])
+
+  const isDark = mounted && resolvedTheme === "dark"
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label={mounted ? (isDark ? "Switch to light theme" : "Switch to dark theme") : "Switch theme"}
+      className={`inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-foreground hover:bg-accent ${className}`}
+    >
+      {mounted ? (
+        isDark ? (
+          <Sun className="size-[17px]" strokeWidth={1.6} aria-hidden />
+        ) : (
+          <Moon className="size-[17px]" strokeWidth={1.6} aria-hidden />
+        )
+      ) : (
+        <span className="size-[17px]" />
+      )}
+    </button>
+  )
+}
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  // Close the drawer when the route changes, or it stays open over the new page.
+  useEffect(() => setIsOpen(false), [pathname])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">SI</span>
-            </div>
-            <span className="font-bold text-xl gradient-text">Saikrishnan Iyer</span>
+    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-20">
+        <div className="flex h-16 items-center justify-between md:h-22">
+          <Link
+            href="/"
+            className="font-serif text-lg font-medium tracking-[-0.01em] md:text-xl"
+          >
+            Saikrishnan&nbsp;Iyer
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const Icon = item.icon
+          {/* Desktop: text only. Icon plus label on every item looks like a toolbar. */}
+          <nav className="hidden items-center gap-10 self-stretch md:flex">
+            {navItems.slice(1).map((item) => {
+              const isActive = pathname === item.href
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
+                  aria-current={isActive ? "page" : undefined}
+                  className={`label-mono flex h-full items-center border-b-2 ${
+                    isActive
+                      ? "border-brand font-medium text-foreground"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  {item.label}
+                </Link>
+              )
+            })}
+            <span aria-hidden className="-ml-3 block h-[22px] w-px bg-border" />
+            <ThemeToggle className="-mr-3" />
+          </nav>
+
+          <div className="-mr-2 flex items-center gap-0.5 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              className="inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-foreground hover:bg-accent"
+            >
+              {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: icons help here, where a bare text row is easy to mis-tap. */}
+      {isOpen && (
+        <nav className="border-t border-border bg-background md:hidden">
+          <div className="mx-auto max-w-[1440px] px-4 py-2 sm:px-8">
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex min-h-11 items-center gap-3 rounded-md px-3 py-2.5 text-base ${
+                    isActive ? "text-foreground" : "text-muted-foreground"
+                  } hover:bg-accent hover:text-foreground`}
+                >
+                  <Icon className="size-[18px]" strokeWidth={1.6} />
                   <span>{item.label}</span>
+                  {isActive && <span aria-hidden className="ml-auto h-1 w-1 rounded-full bg-brand" />}
                 </Link>
               )
             })}
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-300 hover:text-white"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-800">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="flex items-center space-x-3 px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{item.label}</span>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+        </nav>
+      )}
+    </header>
   )
 }

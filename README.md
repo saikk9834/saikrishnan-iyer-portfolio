@@ -1,60 +1,61 @@
-🧠 AI Portfolio Website – Sai Krishnan
-A modern, interactive portfolio website for an AI Software Engineer, built with Next.js, Vercel, and Tailwind CSS, featuring cutting-edge AI-powered experiences that showcase my skills, work, and personality.
+# saikrishnan-iyer-portfolio
 
-🚀 Features
-🔹 AI Chatbot
-An intelligent chatbot that answers questions about my projects, skills, career journey, and AI expertise—powered by real-time LLM integration.
+Personal portfolio site for Saikrishnan Srinivas Iyer, AI Software Engineer.
 
-🔹 AI Skill Visualizer
-A dynamic, data-driven visualization of my AI and software engineering skills, showing proficiency, project impact, and tech stack familiarity.
+Four pages (home, work, skills, about), a light and dark theme, and a chat widget
+that answers questions about my background using my resume as context.
 
-🔹 Role-Based Resume Switcher
-Switch between different resume versions (AI Engineer, Data Analyst, Backend Developer) based on the role—instantly AI-tailored for the visitor.
+## Stack
 
-🔹 Smooth, Modern UI
-Clean and professional design with fluid animations, responsive layouts, and interactive elements.
+- Next.js 15 (App Router) and React 19
+- Tailwind CSS v4, with the palette defined as CSS variables in `app/globals.css`
+- Radix primitives via shadcn/ui for the handful of components under `components/ui`
+- next-themes for the light/dark toggle
+- Anthropic SDK for the chat endpoint
+- lucide-react for icons
 
-🛠️ Tech Stack
-Frontend: Next.js, React, Tailwind CSS, Framer Motion
+## Running it
 
-Hosting & Deployment: Vercel
+Requires Node 20+ and pnpm.
 
-AI Integration: OpenAI API / LangChain (for chatbot + AI features)
+```bash
+pnpm install
+cp .env.example .env.local   # then add your Anthropic key
+pnpm dev
+```
 
-Data Visualization: D3.js / Chart.js
+The site runs at http://localhost:3000.
 
-State Management: Zustand / Redux
+Without `ANTHROPIC_API_KEY` set, every page works but the chat widget returns a 503
+and shows an error in the bubble.
 
-📦 Installation
-bash
-Copy
-Edit
-# Clone the repository
-git clone https://github.com/your-username/ai-portfolio.git
+## Layout
 
-# Navigate into the project folder
-cd ai-portfolio
+```
+app/                 pages and the /api/chat route
+components/          navigation, chat widget, and ui/ primitives
+lib/projects.ts      project data, shared by the home and work pages
+lib/skills.ts        skill data, grouped by category and tagged by role
+public/resume.txt    the text the chat endpoint feeds to the model
+```
 
-# Install dependencies
-npm install
+## Theming
 
-# Run the development server
-npm run dev
-Visit http://localhost:3000 to view the site locally.
+Colors live as CSS variables on `:root` and `.dark` in `app/globals.css`, then get
+mapped to Tailwind utilities in the `@theme inline` block. Changing a hex there
+changes it everywhere. `--brand` is the single accent color: pine green in light,
+sage in dark, because one value cannot hit readable contrast on both grounds.
 
+Components should use the semantic tokens (`bg-background`, `text-body`,
+`border-border`) rather than raw Tailwind colors, or dark mode breaks.
 
-🔮 Future Enhancements
-🗣️ Voice-enabled chatbot
+## Deployment
 
-🧑‍💻 Live coding challenges
+Vercel, on push to `main`. Set `ANTHROPIC_API_KEY` in the project's environment
+variables.
 
-📈 AI career growth recommendations
+## Contact
 
-🌎 Multilingual portfolio AI translations
-
-📬 Contact
-📧 Email: your@email.com
-🌐 Portfolio: your-domain.com
-💼 LinkedIn: linkedin.com/in/your-profile
-
-If you like this project, ⭐ star the repo and let's connect! 🚀
+Email: saikrishnaniyerjm@gmail.com
+LinkedIn: https://linkedin.com/in/saikk9834
+GitHub: https://github.com/saikk9834
