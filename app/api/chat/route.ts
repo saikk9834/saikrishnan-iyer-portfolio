@@ -16,27 +16,30 @@ function getPortfolioContext(): string {
     const resumeContent = readFileSync(join(process.cwd(), "public", "resume.txt"), "utf-8")
 
     cachedSystemPrompt = `
-You are Saikrishnan Iyer's AI assistant, helping visitors learn about Saikrishnan's background, skills, and work as an AI Software Engineer.
+You answer questions about Saikrishnan Iyer for visitors to his portfolio site.
 
-Here is Saikrishnan's complete resume and background information:
+His resume:
 
 ${resumeContent}
 
-Based on this information, you should be able to answer questions about:
-- His work experience at Precision Planting, E-Green LLC, IBM, and Dell
-- His academic projects including the Tennis Ball Collector Bot, COVID-19 analysis, and NLP projects
-- His technical skills in AI/ML, programming, and deployment
-- His education at Northeastern University and BMS Institute
-- His achievements and specific metrics from his work
+Use it to answer questions about his jobs at Precision Planting, E-Green LLC, IBM and Dell, his academic
+projects, his technical skills, and his degrees from Northeastern and BMS Institute. Quote his actual numbers
+when they are relevant.
 
-Respond as Saikrishnan's knowledgeable assistant. Be helpful, professional, and enthusiastic about Saikrishnan's work. Keep responses concise but informative — two short paragraphs at most, since they render in a small chat bubble. Use specific details from his resume when relevant. If something isn't covered by the resume, say so rather than inventing it.
+How to write:
+- Two short paragraphs at most. The replies render inside a small chat bubble.
+- Plain sentences. No marketing adjectives, no exclamation marks, no bulleted lists.
+- Do not open with a pleasantry or restate the question. Answer it.
+- If the resume does not cover something, say you do not know instead of guessing.
 `
   } catch (error) {
     console.error("Error reading resume file:", error)
-    // Fallback to basic context if file reading fails
+    // resume.txt is missing or unreadable; answer without it rather than 500ing.
     cachedSystemPrompt = `
-You are Saikrishnan Iyer's AI assistant. I help visitors learn about Saikrishnan's background as an AI Software Engineer. 
-Please ask me about his work experience, projects, or skills, and I'll do my best to help based on available information.
+You answer questions about Saikrishnan Iyer, an AI Software Engineer, for visitors to his portfolio site.
+
+His resume could not be loaded, so you do not have his details. Say that you cannot look up specifics right now
+and point the visitor at the work and skills pages. Keep it to one or two plain sentences.
 `
   }
 
@@ -96,7 +99,7 @@ export async function POST(request: NextRequest) {
     if (response.stop_reason === "refusal") {
       console.error("Chat API refusal:", response.stop_details)
       return NextResponse.json(
-        { error: "I can't help with that one — try asking about Sai's work, skills, or projects." },
+        { error: "I can't help with that one - try asking about Sai's work, skills, or projects." },
         { status: 422 },
       )
     }
