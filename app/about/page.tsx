@@ -1,38 +1,60 @@
-import { Mail, Linkedin, Github, Target, Zap, Users } from "lucide-react"
+import { Scene } from "@/components/field/scene"
 
-const quickFacts = [
-  { label: "Based in", value: "Bloomington, Illinois" },
-  { label: "Experience", value: "4+ years, shipping" },
-  { label: "Degree", value: "MS Artificial Intelligence" },
-  { label: "Focus", value: "RAG systems, NLP, computer vision" },
-]
-
-const education = [
+const timeline = [
   {
-    degree: "Master of Science in Artificial Intelligence",
-    school: "Northeastern University, Khoury College of Computer Science",
-    detail: "Boston, MA · Aug 2021 - May 2023",
+    year: "2016",
+    place: "Bangalore",
+    title: "BMS Institute of Technology",
+    role: "Bachelor of Engineering, Computer Science",
+    body: "Machine learning and NLP started as coursework here and turned into the thing I actually wanted to do.",
   },
   {
-    degree: "Bachelor of Engineering in Computer Science",
-    school: "BMS Institute of Technology and Management",
-    detail: "Bangalore, India · Sep 2016 - Sep 2020",
+    year: "2019",
+    place: "Bangalore",
+    title: "Dell",
+    role: "NLP Intern",
+    body: "An application that read support tickets, found the underlying issue, and suggested prior fixes. Average resolution time fell 40%.",
+  },
+  {
+    year: "2020",
+    place: "Bangalore",
+    title: "IBM",
+    role: "Software Developer",
+    body: "A GitHub bot that automated the first pass of pull-request review, taking it from three hours to five seconds.",
+  },
+  {
+    year: "2021",
+    place: "Boston",
+    title: "Northeastern University",
+    role: "MS Artificial Intelligence, Khoury College",
+    body: "That work made the gaps in what I understood obvious, so I went back for a Master's.",
+  },
+  {
+    year: "2022",
+    place: "Boston",
+    title: "E-Green",
+    role: "Machine Learning Intern",
+    body: "Gesture recognition on Raspberry Pi and Jetson Nano: models that had to run on the hardware, not just in a notebook.",
+  },
+  {
+    year: "2023",
+    place: "Bloomington, Illinois",
+    title: "Precision Planting",
+    role: "AI Software Engineer, to present",
+    body: "A RAG chatbot on AWS Bedrock with TypeScript and React, which support, HR, and sales all need at once during planting season.",
   },
 ]
 
 const values = [
   {
-    icon: Target,
     title: "Measure the outcome",
     body: "Every project on this site has a number next to it. If I cannot measure what changed, I do not know whether it worked.",
   },
   {
-    icon: Zap,
     title: "Automate the tedious part",
     body: "Most of what I have shipped takes a manual process and cuts the time it needs by half or better.",
   },
   {
-    icon: Users,
     title: "Build with the users nearby",
     body: "Support, HR, and sales all use the chatbot at Precision Planting. Getting it right meant sitting with each of them first.",
   },
@@ -52,121 +74,84 @@ const interests = [
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-20">
-      <header className="max-w-[640px] pt-14 pb-12 lg:pt-16">
-        <div className="flex items-center gap-3">
-          <span aria-hidden className="block h-px w-7 bg-brand" />
-          <span className="label-mono text-brand">About</span>
-        </div>
-        <h1 className="mt-5 font-serif text-[clamp(2.25rem,6vw,3.5rem)] leading-[1.05] font-normal tracking-[-0.025em] dark:font-light">
-          How I got here
-        </h1>
-        <p className="mt-5 text-[17px] leading-[1.65] text-body">
-          AI software engineer in Bloomington, Illinois. Most of my work is getting models into production and keeping
-          them there.
-        </p>
-      </header>
-
-      {/* Story + facts */}
-      <section className="grid gap-14 border-t border-border pt-12 pb-20 lg:grid-cols-[minmax(0,660px)_320px] lg:justify-between lg:gap-20">
-        <div className="max-w-[660px] space-y-5 text-[17px] leading-[1.75] text-body">
-          <p>
-            I studied Computer Science at BMS Institute of Technology in Bangalore. Machine learning and NLP started as
-            coursework there and turned into the thing I actually wanted to do.
-          </p>
-          <p>
-            Dell came first, then IBM, both building NLP tooling that cut processing times by up to 60%. That work made
-            the gaps in what I understood obvious, so I went to Northeastern for a Master&apos;s in Artificial
-            Intelligence.
-          </p>
-          <p>
-            I&apos;m now at Precision Planting, building a RAG chatbot on AWS Bedrock with TypeScript and React. Most of
-            the difficulty is not the model. It is retrieval quality, latency, and making sure the thing still answers
-            correctly during planting season, when support, HR, and sales all need it at once.
+    <>
+      <Scene
+        as="header"
+        spec={{ kind: "portrait" }}
+        anchor="#about-portrait"
+        className="relative flex min-h-svh flex-col overflow-hidden"
+      >
+        <div
+          id="about-portrait"
+          aria-hidden
+          className="absolute inset-x-0 top-[9svh] h-[42svh] lg:inset-y-[6svh] lg:right-[3vw] lg:left-auto lg:h-auto lg:w-[52vw]"
+        />
+        <div className="shell relative flex flex-1 flex-col justify-end pt-32 pb-24 lg:pb-14">
+          <p className="eyebrow text-brand">About</p>
+          <h1 className="display display-xl mt-6 text-[clamp(3.5rem,11.5vw,11rem)] leading-[0.96]">
+            <span className="lift">
+              <span>How I</span>
+            </span>
+            <span className="lift">
+              <span style={{ animationDelay: "0.62s" }}>
+                <em>got here</em>
+              </span>
+            </span>
+          </h1>
+          <p className="fade-in mt-8 max-w-[30rem] text-[18px] leading-[1.6] text-body">
+            AI software engineer in Bloomington, Illinois. Most of my work is getting models into production and keeping
+            them there.
           </p>
         </div>
+      </Scene>
 
-        <dl className="h-fit border-t border-border pt-6 lg:border-t-0 lg:pt-0">
-          {quickFacts.map((fact) => (
-            <div key={fact.label} className="border-b border-border/60 py-4 last:border-b-0">
-              <dt className="label-mono text-[10px] text-muted-foreground">{fact.label}</dt>
-              <dd className="mt-2 text-[15px]">{fact.value}</dd>
-            </div>
+      {/* The years form on the stage while the story scrolls past. */}
+      <section aria-label="Career timeline" className="shell lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
+        <ol>
+          {timeline.map((entry) => (
+            <Scene
+              key={entry.year}
+              as="li"
+              spec={{ kind: "text", text: entry.year }}
+              anchor="#about-stage"
+              className="flex flex-col justify-center py-14 lg:min-h-svh"
+            >
+              <div data-anchor aria-hidden className="h-[24svh] lg:hidden" />
+              <p className="eyebrow flex flex-wrap gap-x-4 text-muted-foreground">
+                <span className="text-brand">{entry.year}</span>
+                <span>{entry.place}</span>
+              </p>
+              <h2 className="display mt-5 text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[1.03]">{entry.title}</h2>
+              <p className="eyebrow mt-4 text-muted-foreground">{entry.role}</p>
+              <p className="mt-6 max-w-[33rem] text-[18px] leading-[1.65] text-body">{entry.body}</p>
+            </Scene>
           ))}
-        </dl>
+        </ol>
+        <div id="about-stage" aria-hidden className="sticky top-0 hidden h-svh lg:block" />
       </section>
 
-      {/* Education */}
-      <section className="border-t border-border pt-12 pb-20">
-        <h2 className="label-mono pb-6 text-[10px] text-muted-foreground">Education</h2>
-        <div className="grid gap-10 md:grid-cols-2">
-          {education.map((entry) => (
-            <div key={entry.degree}>
-              <h3 className="font-serif text-[22px] leading-[1.25] font-normal tracking-[-0.015em] dark:font-light">
-                {entry.degree}
+      <Scene as="section" spec={{ kind: "sheet" }} className="shell pt-20 pb-24">
+        <h2 className="eyebrow text-brand">How I work</h2>
+        <div className="mt-8">
+          {values.map((value, index) => (
+            <div
+              key={value.title}
+              className="rise grid gap-x-10 gap-y-3 border-t border-border py-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-baseline"
+            >
+              <h3 className="display text-[clamp(2rem,4.4vw,3.75rem)] leading-[1.06]">
+                <span className="eyebrow mr-4 align-middle text-muted-foreground">0{index + 1}</span>
+                {value.title}
               </h3>
-              <p className="mt-2.5 text-[15px] text-body">{entry.school}</p>
-              <p className="mt-1.5 font-mono text-[11px] tracking-[0.06em] text-muted-foreground">{entry.detail}</p>
+              <p className="text-[17px] leading-[1.65] text-body">{value.body}</p>
             </div>
           ))}
         </div>
-      </section>
 
-      {/* Values */}
-      <section className="border-t border-border pt-12 pb-20">
-        <h2 className="label-mono pb-8 text-[10px] text-muted-foreground">How I work</h2>
-        <div className="grid gap-10 md:grid-cols-3">
-          {values.map((value) => {
-            const Icon = value.icon
-            return (
-              <div key={value.title}>
-                <Icon className="size-5 text-brand" strokeWidth={1.5} aria-hidden />
-                <h3 className="mt-4 font-serif text-xl font-normal tracking-[-0.015em] dark:font-light">
-                  {value.title}
-                </h3>
-                <p className="mt-2.5 text-[15px] leading-[1.65] text-body">{value.body}</p>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* Interests */}
-      <section className="border-t border-border pt-12 pb-20">
-        <h2 className="label-mono pb-6 text-[10px] text-muted-foreground">Areas of interest</h2>
-        <p className="max-w-[820px] text-[17px] leading-[1.9]">{interests.join(" · ")}</p>
-      </section>
-
-      {/* Contact */}
-      <section className="flex flex-wrap items-center justify-between gap-6 border-t border-border py-10 pb-24">
-        <p className="font-serif text-2xl leading-[1.3] font-normal tracking-[-0.015em] dark:font-light">
-          Get in touch
+        <h2 className="eyebrow mt-20 text-muted-foreground">Areas of interest</h2>
+        <p className="display mt-6 max-w-[24em] text-[clamp(1.5rem,2.8vw,2.5rem)] leading-[1.3] text-body">
+          {interests.join(" · ")}
         </p>
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-          <a href="mailto:saikrishnaniyerjm@gmail.com" className="link-rule inline-flex items-center gap-2.5 text-[15px]">
-            <Mail className="size-4" strokeWidth={1.6} aria-hidden />
-            saikrishnaniyerjm@gmail.com
-          </a>
-          <a
-            href="https://linkedin.com/in/saikk9834"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-rule inline-flex items-center gap-2.5 text-[15px]"
-          >
-            <Linkedin className="size-4" strokeWidth={1.6} aria-hidden />
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/saikk9834"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-rule inline-flex items-center gap-2.5 text-[15px]"
-          >
-            <Github className="size-4" strokeWidth={1.6} aria-hidden />
-            GitHub
-          </a>
-        </div>
-      </section>
-    </div>
+      </Scene>
+    </>
   )
 }

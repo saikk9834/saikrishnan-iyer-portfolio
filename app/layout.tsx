@@ -1,33 +1,34 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Bodoni_Moda } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navigation from "@/components/navigation"
-import FloatingChatbot from "@/components/floating-chatbot"
+import Ask from "@/components/ask"
+import PointField from "@/components/field/point-field"
+import SiteFooter from "@/components/site-footer"
 
-const fraunces = Fraunces({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
-  variable: "--font-fraunces",
-})
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-instrument",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jetbrains-mono",
+  variable: "--font-bodoni",
 })
 
 export const metadata: Metadata = {
   title: "Saikrishnan Iyer - AI Software Engineer",
   description:
     "Portfolio of Saikrishnan Srinivas Iyer, AI Software Engineer building retrieval-augmented systems, NLP pipelines, and computer-vision tools.",
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0c" },
+    { media: "(prefers-color-scheme: light)", color: "#ece8df" },
+  ],
 }
 
 export default function RootLayout({
@@ -39,13 +40,15 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${bodoni.variable} ${GeistSans.variable} ${GeistMono.variable} antialiased`}
     >
-      <body className="min-h-dvh bg-background font-sans text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <body className="min-h-dvh font-sans text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <PointField />
           <Navigation />
-          <main>{children}</main>
-          <FloatingChatbot />
+          <main className="relative z-10">{children}</main>
+          <SiteFooter />
+          <Ask />
         </ThemeProvider>
       </body>
     </html>
