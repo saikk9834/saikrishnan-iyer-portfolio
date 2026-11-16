@@ -1,174 +1,124 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
-import { featuredProjects } from "@/lib/projects"
+import { ArrowRight } from "lucide-react"
+import { workProjects } from "@/lib/projects"
+import { Scene } from "@/components/field/scene"
+import { MetricChapters } from "@/components/metric-chapters"
+import { WordReveal } from "@/components/word-reveal"
 
-const previously = ["IBM", "Dell", "E-Green", "Northeastern University"]
+const previously = [
+  { org: "IBM", role: "Software Developer" },
+  { org: "Dell", role: "NLP Intern" },
+  { org: "E-Green", role: "Machine Learning Intern" },
+  { org: "Northeastern", role: "MS Artificial Intelligence" },
+]
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-20">
-      {/* Hero */}
-      <section className="flex flex-col gap-14 pt-14 pb-20 lg:flex-row lg:items-start lg:justify-between lg:gap-22 lg:pt-19">
-        <div className="flex max-w-[600px] flex-col lg:flex-1">
-          <div className="flex items-center gap-3">
-            <span aria-hidden className="block h-px w-7 bg-brand" />
-            <span className="label-mono text-brand">AI Software Engineer</span>
-          </div>
-
-          <h1 className="mt-6 font-serif text-[clamp(2.5rem,8vw,4.875rem)] leading-[1.0] font-normal tracking-[-0.025em] dark:font-light">
-            Saikrishnan
-            <br />
-            Srinivas Iyer
-          </h1>
-
-          <p className="mt-7 text-lg leading-[1.68] text-body sm:text-[19px]">
-            I work on RAG systems, NLP pipelines, and computer vision. Right now that means a support chatbot on AWS
-            Bedrock at Precision Planting.
-          </p>
-
-          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-7">
-            <Link
-              href="/projects"
-              className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-md bg-primary px-7 text-base font-medium text-primary-foreground hover:bg-primary/90 sm:w-auto"
-            >
-              View selected work
-              <ArrowRight className="size-4" strokeWidth={1.75} />
-            </Link>
-            <Link href="/about" className="link-rule text-base font-medium">
-              Read about me
-            </Link>
-          </div>
-
-          <dl className="mt-16 grid grid-cols-1 gap-6 border-t border-border pt-7 sm:grid-cols-3">
-            <div>
-              <dt className="label-mono text-[10px] text-muted-foreground">Experience</dt>
-              <dd className="mt-2 text-[15px]">4+ years, shipping</dd>
-            </div>
-            <div>
-              <dt className="label-mono text-[10px] text-muted-foreground">Education</dt>
-              <dd className="mt-2 text-[15px]">
-                MS Artificial Intelligence
-                <br />
-                Northeastern University
-              </dd>
-            </div>
-            <div>
-              <dt className="label-mono text-[10px] text-muted-foreground">Based in</dt>
-              <dd className="mt-2 text-[15px]">Bloomington, Illinois</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div className="w-full max-w-[396px] shrink-0">
+    <>
+      {/* Hero: the field arrives as a portrait. */}
+      <Scene
+        as="section"
+        spec={{ kind: "portrait" }}
+        anchor="#hero-portrait"
+        className="relative flex min-h-svh flex-col overflow-hidden"
+      >
+        <div
+          id="hero-portrait"
+          aria-hidden
+          className="absolute inset-x-0 top-[9svh] h-[50svh] lg:top-[11svh] lg:right-[8vw] lg:left-auto lg:h-[83svh] lg:w-[52vw]"
+        />
+        <div className="field-fallback absolute top-[12svh] right-5 w-[55vw] max-w-[420px] lg:right-[10vw]">
           <Image
             src="/saikrishnan-iyer-headshot.jpg"
             alt="Portrait of Saikrishnan Srinivas Iyer"
-            width={396}
-            height={468}
+            width={420}
+            height={462}
             priority
-            className="aspect-[396/468] w-full rounded-md object-cover object-[center_22%]"
+            className="w-full grayscale"
           />
-          <div className="mt-4 flex items-baseline justify-between border-t border-border pt-3">
-            <span className="label-mono text-[10px] text-muted-foreground">Currently</span>
-            <span className="text-[13px] text-body">Precision Planting</span>
+        </div>
+
+        <div className="shell relative flex flex-1 flex-col justify-end pt-28 pb-24 lg:pb-20">
+          <div className="mb-auto hidden max-w-[23rem] pt-[14svh] lg:block">
+            <p className="eyebrow fade-in text-brand">AI Software Engineer</p>
+            <p className="fade-in mt-5 text-[19px] leading-[1.55] text-body">
+              I work on RAG systems, NLP pipelines, and computer vision. Right now that means a support chatbot on AWS
+              Bedrock at Precision Planting.
+            </p>
+            <div className="fade-in mt-7 flex items-center gap-6">
+              <Link href="/projects" className="group inline-flex items-center gap-2 text-[15px] font-medium">
+                <span className="link-rule">Selected work</span>
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" strokeWidth={1.6} />
+              </Link>
+              <Link href="/about" className="link-rule text-[15px]">
+                About
+              </Link>
+            </div>
+          </div>
+
+          <h1 className="display display-xl relative text-[17.4vw] leading-[0.92] lg:flex lg:gap-[0.2em] lg:text-[11.1vw] lg:whitespace-nowrap">
+            <span className="lift">
+              <span>Saikrishnan</span>
+            </span>
+            <span className="lift">
+              <span style={{ animationDelay: "0.62s" }}>
+                <em className="text-brand">Iyer</em>
+              </span>
+            </span>
+          </h1>
+
+          <div className="fade-in mt-5 lg:hidden">
+            <p className="eyebrow text-brand">AI Software Engineer</p>
+            <p className="mt-3 text-[16px] leading-[1.55] text-body">
+              I work on RAG systems, NLP pipelines, and computer vision. Right now that means a support chatbot on AWS
+              Bedrock at Precision Planting.
+            </p>
           </div>
         </div>
+
+              </Scene>
+
+      {/* Thesis: the sentence lights up as you read it. */}
+      <Scene as="section" spec={{ kind: "sheet" }} className="thesis relative h-[240svh]">
+        <div className="shell sticky top-0 flex h-svh flex-col justify-center">
+          <p className="eyebrow text-brand">What the work is</p>
+          <p className="display mt-7 max-w-[17em] text-[clamp(2.25rem,5.9vw,6rem)] leading-[1.06]">
+            <WordReveal text="Most of the difficulty is *not* the *model.* It is retrieval quality, latency, and making sure the thing still answers correctly during planting season." />
+          </p>
+        </div>
+      </Scene>
+
+      {/* Work: every project's number, formed by the same points. */}
+      <section aria-labelledby="work-heading">
+        <Scene spec={{ kind: "sheet" }} className="shell pt-10 pb-6">
+          <p className="eyebrow text-brand">Selected work</p>
+          <h2 id="work-heading" className="display display-xl mt-5 text-[clamp(2.75rem,8vw,7.5rem)] leading-[1]">
+            Systems in <em>production</em>
+          </h2>
+        </Scene>
+        <MetricChapters projects={workProjects} stageId="home-stage" />
       </section>
 
       {/* Previously */}
-      <section className="flex flex-wrap items-baseline gap-x-9 gap-y-3 pb-24">
-        <span className="label-mono text-[10px] text-muted-foreground">Previously</span>
-        {previously.map((org) => (
-          <span key={org} className="font-serif text-xl text-body sm:text-[22px]">
-            {org}
-          </span>
-        ))}
-      </section>
-
-      {/* Selected work */}
-      <section className="pb-24">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <div className="flex items-center gap-3">
-              <span aria-hidden className="block h-px w-7 bg-brand" />
-              <span className="label-mono text-brand">Selected work</span>
-            </div>
-            <h2 className="mt-5 font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.05] font-normal tracking-[-0.025em] dark:font-light">
-              Systems in production
-            </h2>
-          </div>
-          <Link href="/projects" className="link-rule text-[15px] font-medium">
-            All work
-          </Link>
-        </div>
-
-        <div className="mt-10">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.id}
-              href="/projects"
-              className="grid items-start gap-5 border-t border-border py-7 hover:bg-accent/40 md:grid-cols-[196px_minmax(0,1fr)_232px] md:gap-10"
+      <Scene as="section" spec={{ kind: "sheet" }} className="shell pt-16 pb-28">
+        <p className="eyebrow text-muted-foreground">Previously</p>
+        <ul className="mt-6">
+          {previously.map((entry) => (
+            <li
+              key={entry.org}
+              className="rise flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-t border-border py-5"
             >
-              <div>
-                <div className="font-mono text-[11px] tracking-[0.1em]">{project.company}</div>
-                <div className="mt-1.5 font-mono text-[11px] tracking-[0.06em] text-muted-foreground">
-                  {project.period}
-                </div>
-              </div>
-              <div>
-                <h3 className="font-serif text-2xl leading-[1.2] font-normal tracking-[-0.015em] dark:font-light">
-                  {project.title}
-                </h3>
-                <p className="mt-2.5 max-w-[640px] text-[15px] leading-[1.62] text-body">{project.description}</p>
-                <div className="label-mono mt-3.5 text-[10px] text-muted-foreground">
-                  {project.technologies.slice(0, 4).join(" · ")}
-                </div>
-              </div>
-              <div className="md:text-right">
-                <div className="font-serif text-[42px] leading-none font-normal tracking-[-0.02em] text-brand">
-                  {project.metric}
-                </div>
-                <div className="label-mono mt-2 text-[10px] text-muted-foreground">{project.metricLabel}</div>
-              </div>
-            </Link>
+              <span className="display text-[clamp(2rem,5vw,4.25rem)] leading-[1.05]">{entry.org}</span>
+              <span className="eyebrow text-muted-foreground">{entry.role}</span>
+            </li>
           ))}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section className="flex flex-wrap items-center justify-between gap-6 border-t border-border py-10">
-        <p className="max-w-[520px] font-serif text-2xl leading-[1.3] font-normal tracking-[-0.015em] dark:font-light">
-          Open to talking about AI engineering work, or anything on this site.
-        </p>
-        <div className="flex items-center gap-2">
-          <a
-            href="mailto:saikrishnaniyerjm@gmail.com"
-            aria-label="Email Saikrishnan Iyer"
-            className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground"
-          >
-            <Mail className="size-[18px]" strokeWidth={1.6} />
-          </a>
-          <a
-            href="https://linkedin.com/in/saikk9834"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground"
-          >
-            <Linkedin className="size-[18px]" strokeWidth={1.6} />
-          </a>
-          <a
-            href="https://github.com/saikk9834"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground"
-          >
-            <Github className="size-[18px]" strokeWidth={1.6} />
-          </a>
-        </div>
-      </section>
-    </div>
+        </ul>
+        <Link href="/projects" className="group mt-10 inline-flex items-center gap-2 text-[17px] font-medium">
+          <span className="link-rule">All seven projects</span>
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" strokeWidth={1.6} />
+        </Link>
+      </Scene>
+    </>
   )
 }

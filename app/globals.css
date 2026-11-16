@@ -4,85 +4,111 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Two themes off one set of names. `brand` is the accent colour; `accent` is left
-  as a subtle surface because shadcn's hover states (hover:bg-accent) depend on it.
+  Tokens run primitive -> semantic -> component; see DESIGN.md.
+  Semantic names keep shadcn's vocabulary so components/ui keeps working.
 */
+
+/* Primitives. Named by value, referenced only by the semantic layer below. */
 :root {
-  --background: #faf9f5;
-  --foreground: #1a1917;
+  --carbon-950: #0a0a0c;
+  --carbon-900: #121215;
+  --carbon-800: #1c1c20;
+  --carbon-700: #2b2b30;
 
-  --card: #ffffff;
-  --card-foreground: #1a1917;
-  --popover: #ffffff;
-  --popover-foreground: #1a1917;
+  --bone-50: #f4f0e8;
+  --bone-100: #ece8df;
+  --bone-200: #dfdacf;
+  --bone-300: #c9c4b9;
+  --bone-400: #98948b;
+  --bone-600: #5e5a53;
+  --bone-700: #3b3833;
 
-  --primary: #1a1917;
-  --primary-foreground: #faf9f5;
-  --secondary: #f1efe8;
-  --secondary-foreground: #1a1917;
-
-  --muted: #f1efe8;
-  --muted-foreground: #6b6862;
-  --accent: #f1efe8;
-  --accent-foreground: #1a1917;
-
-  /* Body copy, one step down from --foreground. 10.4:1 on --background. */
-  --body: #3d3a35;
-
-  --brand: #14534a;
-  --brand-foreground: #faf9f5;
-  --brand-subtle: #edf2f0;
-
-  --destructive: #a03232;
-  --destructive-foreground: #faf9f5;
-
-  --border: #e3e0d8;
-  --input: #e3e0d8;
-  --ring: #14534a;
-  --rule: #c9c4b8;
-
-  --radius: 0.125rem;
+  /* Infrared: the red of the shirt in the portrait. */
+  --infrared-400: #ff5a3c;
+  --infrared-600: #b92f13;
 }
 
+/* Semantic: paper. */
+:root {
+  --background: var(--bone-100);
+  --foreground: var(--carbon-900);
+
+  --card: var(--bone-50);
+  --card-foreground: var(--carbon-900);
+  --popover: var(--bone-50);
+  --popover-foreground: var(--carbon-900);
+
+  --primary: var(--carbon-900);
+  --primary-foreground: var(--bone-50);
+  --secondary: var(--bone-200);
+  --secondary-foreground: var(--carbon-900);
+
+  --muted: var(--bone-200);
+  --muted-foreground: var(--bone-600);
+  --accent: var(--bone-200);
+  --accent-foreground: var(--carbon-900);
+
+  --body: var(--bone-700);
+
+  --brand: var(--infrared-600);
+  --brand-foreground: var(--bone-50);
+
+  --destructive: var(--infrared-600);
+  --destructive-foreground: var(--bone-50);
+
+  --border: var(--bone-300);
+  --input: var(--bone-300);
+  --ring: var(--infrared-600);
+  --rule: var(--bone-400);
+
+  --radius: 0.125rem;
+
+  /* Component: read by the WebGL engine, so these must stay 6-digit hex. */
+  --field-ink: #17171a;
+  --field-heat: #d63a1a;
+}
+
+/* Semantic: carbon. The default. */
 .dark {
-  --background: #161513;
-  --foreground: #f2efe7;
+  --background: var(--carbon-950);
+  --foreground: var(--bone-50);
 
-  --card: #201e1b;
-  --card-foreground: #f2efe7;
-  --popover: #201e1b;
-  --popover-foreground: #f2efe7;
+  --card: var(--carbon-900);
+  --card-foreground: var(--bone-50);
+  --popover: var(--carbon-900);
+  --popover-foreground: var(--bone-50);
 
-  --primary: #f2efe7;
-  --primary-foreground: #161513;
-  --secondary: #242220;
-  --secondary-foreground: #f2efe7;
+  --primary: var(--bone-50);
+  --primary-foreground: var(--carbon-950);
+  --secondary: var(--carbon-800);
+  --secondary-foreground: var(--bone-50);
 
-  --muted: #242220;
-  --muted-foreground: #9a958a;
-  --accent: #242220;
-  --accent-foreground: #f2efe7;
+  --muted: var(--carbon-800);
+  --muted-foreground: var(--bone-400);
+  --accent: var(--carbon-800);
+  --accent-foreground: var(--bone-50);
 
-  /* 8.9:1 on --background. */
-  --body: #c4bfb4;
+  --body: var(--bone-300);
 
-  --brand: #a8c5b5;
-  --brand-foreground: #161513;
-  --brand-subtle: #222a26;
+  --brand: var(--infrared-400);
+  --brand-foreground: var(--carbon-950);
 
-  --destructive: #e0796f;
-  --destructive-foreground: #161513;
+  --destructive: var(--infrared-400);
+  --destructive-foreground: var(--carbon-950);
 
-  --border: #33302b;
-  --input: #33302b;
-  --ring: #a8c5b5;
-  --rule: #5c574f;
+  --border: var(--carbon-700);
+  --input: var(--carbon-700);
+  --ring: var(--infrared-400);
+  --rule: var(--bone-600);
+
+  --field-ink: #f4f0e8;
+  --field-heat: #ff5a3c;
 }
 
 @theme inline {
-  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bodoni), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -101,7 +127,6 @@
   --color-body: var(--body);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
-  --color-brand-subtle: var(--brand-subtle);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -109,7 +134,6 @@
   --color-ring: var(--ring);
   --color-rule: var(--rule);
 
-  /* Near-square everywhere. Depth comes from the card against the ground, not radii. */
   --radius-sm: 2px;
   --radius-md: 2px;
   --radius-lg: 2px;
@@ -121,8 +145,13 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    background: var(--background);
+    transition: background-color 0.5s ease;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
@@ -131,49 +160,123 @@
     background: var(--brand);
     color: var(--brand-foreground);
   }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
 }
 
 @layer components {
-  /* The small uppercase mono label used above headings and beside metadata. */
-  .label-mono {
-    @apply font-mono text-[11px] uppercase tracking-[0.16em];
+  .shell {
+    @apply mx-auto w-full max-w-[1680px] px-5 sm:px-10 lg:px-16;
   }
 
-  /* Text links: hairline underline, darkening on hover. */
+  /*
+    Display type. Pinned to a low optical size so hairlines survive on a dark ground
+    at heading sizes; at the top of the axis, hyphens and thin strokes vanish.
+    .display-xl is for type big enough to carry the true Didone contrast.
+  */
+  .display {
+    font-family: var(--font-serif);
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 14;
+    font-weight: 400;
+    letter-spacing: -0.018em;
+  }
+
+  .display-xl {
+    font-variation-settings: "opsz" 40;
+    letter-spacing: -0.024em;
+  }
+
+  /* The small technical label, used sparingly above and beside display type. */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em];
+  }
+
   .link-rule {
-    @apply underline decoration-rule decoration-1 underline-offset-[5px] transition-colors;
+    @apply underline decoration-rule decoration-1 underline-offset-[6px];
+    transition: text-decoration-color 0.25s ease;
   }
 
   .link-rule:hover {
-    @apply decoration-foreground;
+    @apply decoration-brand;
   }
 }
 
-/* Scoped to the properties that change on a theme flip. A global `*` rule here
-   forces a style recalc on every element in the page. */
-html,
-body,
-header,
-footer,
-section,
-article,
-aside,
-nav,
-a,
-button,
-input,
-textarea,
-h1,
-h2,
-h3,
-h4,
-p,
-span,
-div[data-slot] {
-  transition:
-    background-color 0.32s ease,
-    border-color 0.32s ease,
-    color 0.32s ease;
+/* Hero: lines lift out from behind a mask. CSS only, so content never waits on JS. */
+.lift {
+  display: block;
+  overflow: hidden;
+  /* Room for the italic overhang and descenders inside the mask. */
+  padding: 0.04em 0.06em 0.14em 0;
+  margin-bottom: -0.14em;
+}
+
+.lift > span {
+  display: block;
+  animation: lift 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+.fade-in {
+  animation: fade-in 1.2s ease 1.3s both;
+}
+
+@keyframes lift {
+  from {
+    transform: translateY(112%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Scroll-driven reveals. Progressive: without support everything is simply visible. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .thesis {
+      view-timeline: --thesis block;
+    }
+
+    .thesis-word {
+      animation: word-on linear both;
+      animation-timeline: --thesis;
+      animation-range: contain calc(4% + var(--p) * 74%) contain calc(14% + var(--p) * 74%);
+    }
+
+    .rise {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 70%;
+    }
+  }
+}
+
+@keyframes word-on {
+  from {
+    opacity: 0.14;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* Shown only when WebGL2 isn't available. */
+.field-fallback {
+  display: none;
+}
+
+[data-field="off"] .field-fallback {
+  display: block;
 }
 
 ::-webkit-scrollbar {
@@ -200,6 +303,7 @@ div[data-slot] {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
